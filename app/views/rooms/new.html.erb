@@ -1,0 +1,36 @@
+<h1>Rooms#new</h1>
+<p>Find me in app/views/rooms/new.html.erb</p>
+
+<%= form_for(@room) do |f| %>
+
+<div class="field row">
+	<%= f.label :物件名 %>
+	<%= f.text_field :name %>
+</div>
+
+<div class="field row">
+	<%= f.label :住所 %>
+	<%= f.text_field :address %>
+</div>
+
+<div class="field row">
+	<%= f.label :状態 %>
+	<%= f.text_area :condition %>
+</div>
+
+<div class="field row">
+	<%= f.label :参考元URL %>
+	<%= f.text_field :link %>
+</div>
+
+<div>
+	<%= f.label :居住年数 %>
+	<%= f.select :living_status, options_for_select(Room.living_statuses.keys, Room.living_statuses), :prompt => "選択してください" %>
+</div>
+
+<div>
+	<%= f.submit "新規登録" %>
+</div>
+
+<% end %>
+
