@@ -1,2 +1,30 @@
 <h1>Rooms#show</h1>
 <p>Find me in app/views/rooms/show.html.erb</p>
+
+<table border="2" style="border-collapse: collapse; border-color: green">
+	<thead>
+		<tr>
+			<td>ユーザ名</td>
+			<td>物件名</td>
+			<td>住所</td>
+			<td>状態</td>
+			<td>参照url</td>
+			<td>居住年数</td>
+			<td>記事作成日</td>
+			<td>記事更新日</td>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr>
+			<td>ユーザを表示する</td>
+			<td><%= @room.name %></td>
+			<td><%= @room.address %></td>
+			<td><%= @room.condition %></td>
+			<td><%= @room.link %></td>
+			<td><%= @room.living_status %></td>
+			<td><%= @room.created_at %></td>
+			<td><%= @room.updated_at %></td>
+		</tr>
+	</tbody>
+</table>
