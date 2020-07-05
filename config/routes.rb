@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   get 'home/about'
 
   resources :rooms, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+  resources :users, only: [:show]
 end
