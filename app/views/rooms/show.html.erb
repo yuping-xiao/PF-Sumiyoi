@@ -1,11 +1,12 @@
-<h1>Rooms#show</h1>
-<p>Find me in app/views/rooms/show.html.erb</p>
+<h1>物件詳細</h1>
+<!-- <p>Find me in app/views/rooms/show.html.erb</p> -->
 
 <table border="2" style="border-collapse: collapse; border-color: green">
 	<thead>
 		<tr>
 			<td>ユーザ名</td>
 			<td>物件名</td>
+			<td>物件イメージ画像</td>
 			<td>住所</td>
 			<td>状態</td>
 			<td>参照url</td>
@@ -19,6 +20,16 @@
 		<tr>
 			<td>ユーザを表示する</td>
 			<td><%= @room.name %></td>
+
+			<% if @room.room_images.present? %>
+				<td><% @room.room_images.each do |image| %>
+				<%= attachment_image_tag image, :image, :fill, 200, 200 %></td>
+				<% end %>
+
+			<% else %>
+				<td><%= image_tag 'no_image.jpg', size: '200x200' %></td>
+			<% end %>
+			
 			<td><%= @room.address %></td>
 			<td><%= @room.condition %></td>
 			<td><%= @room.link %></td>
