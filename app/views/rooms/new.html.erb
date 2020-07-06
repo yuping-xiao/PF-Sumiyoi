@@ -1,11 +1,16 @@
-<h1>Rooms#new</h1>
-<p>Find me in app/views/rooms/new.html.erb</p>
+<h1>物件新規投稿</h1>
+<!-- <p>Find me in app/views/rooms/new.html.erb</p> -->
 
 <%= form_for(@room) do |f| %>
 
 <div class="field row">
 	<%= f.label :物件名 %>
 	<%= f.text_field :name %>
+</div>
+
+<div class="field">
+	<%= f.label :物件イメージ画像 %>
+	<%= f.attachment_field :room_images_images, multiple: true %>
 </div>
 
 <div class="field row">
