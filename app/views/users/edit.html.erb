@@ -1,0 +1,15 @@
+<h1>ユーザ編集</h1>
+<%= form_for(@user) do |f| %>
+
+<%= f.label :ユーザ名 %>
+<%= f.text_field :name %>
+
+<%= f.label :プロフィール画像 %>
+<%= f.attachment_field :profile_image %>
+
+<%= f.label :紹介文 %>
+<%= f.text_area :introduction %>
+
+<%= f.submit "変更を保存", class:"btn" %>
+
+<% end %>

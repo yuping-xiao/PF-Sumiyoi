@@ -1,5 +1,5 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1>ユーザ詳細</h1>
+<!-- <p>Find me in app/views/users/show.html.erb</p> -->
 
 <table class="table">
 	<thead>
@@ -14,9 +14,11 @@
 
 		<tr>
 			<td><%= @user.name %></td>
-			<td>イメージ画像</td>
+			<td><%= attachment_image_tag @user, :profile_image, :fill, 200, 200 %></td>
 			<td><%= @user.introduction %></td>
 		</tr>
 
 	</tbody>
+</table>
 
+<%= link_to "ユーザ情報編集", edit_user_path %>
