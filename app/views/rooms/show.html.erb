@@ -23,11 +23,11 @@
 
 			<% if @room.room_images.present? %>
 				<td><% @room.room_images.each do |image| %>
-				<%= attachment_image_tag image, :image, :fill, 200, 200 %></td>
+				<%= attachment_image_tag image, :image, :fill, 200, 150 %></td>
 				<% end %>
 
 			<% else %>
-				<td><%= image_tag 'no_image.jpg', size: '200x200' %></td>
+				<td><%= image_tag 'no_image.jpg', size: '200x150' %></td>
 			<% end %>
 			
 			<td><%= @room.address %></td>
@@ -41,8 +41,32 @@
 </table>
 
 <li>
-	<%= @room.room_comments.count %>件のコメント
+	<%= @room.favorites.count %>件のいいね
 </li>
+
+<li>
+	/ <%= @room.room_comments.count %>件のコメント
+</li>
+
+<div>
+	----------------------------------------------
+</div>
+
+<% if @room.favorited_by?(current_user) %>
+<div>
+	いいね済み
+	<%= link_to room_favorites_path(@room), method: :delete do %>
+	いいねを取り消す
+	<% end %>
+</div>
+<% else %>
+<div>
+	未いいね
+	<%= link_to room_favorites_path(@room), method: :post do %>
+	いいねする
+	<% end %>
+</div>
+<% end %>
 
 </br>
 
@@ -52,6 +76,10 @@
 <% end %>
 
 </br>
+
+<% if @room.room_comments.count == 0 %>
+
+<% else %>
 
 <table border="1" style="border-collapse: collapse;">
 	<thead>
@@ -78,4 +106,6 @@
 		</tr>
 		<% end %>
 	</tbody>
+</table>
 
+<% end %>
