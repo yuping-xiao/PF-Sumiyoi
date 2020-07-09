@@ -34,8 +34,48 @@
 			<td><%= @room.condition %></td>
 			<td><%= @room.link %></td>
 			<td><%= @room.living_status %></td>
-			<td><%= @room.created_at %></td>
-			<td><%= @room.updated_at %></td>
+			<td><%= @room.created_at.strftime('%Y/%m/%d') %></td>
+			<td><%= @room.updated_at.strftime('%Y/%m/%d') %></td>
 		</tr>
 	</tbody>
 </table>
+
+<li>
+	<%= @room.room_comments.count %>件のコメント
+</li>
+
+</br>
+
+<%= form_for [@room, @room_comment] do |f| %>
+	<%= f.text_area :comment, rows:'5', class: "form-control", placeholder: "コメントを書き込む" %>
+	<%= f.submit "送信する", class: "btn" %>
+<% end %>
+
+</br>
+
+<table border="1" style="border-collapse: collapse;">
+	<thead>
+		<tr>
+			<td>ユーザ名</td>
+			<td></td>
+			<td>日付</td>
+			<td>コメント</td>
+			<td></td>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @room.room_comments.each do |room_comment| %>
+		<tr>
+			<td><%= room_comment.user.name %></td>
+			<td><%= attachment_image_tag room_comment.user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg", size: '65x65' %></td>
+			<td><%= room_comment.created_at.strftime('%Y/%m/%d') %></td>
+			<td><%= room_comment.comment %></td>
+
+			<% if room_comment.user == current_user %>
+				<td><%= link_to "コメント削除", room_room_comment_path(room_comment.room, @room), method: :delete, class: "btn" %></td>
+			<% end %>
+		</tr>
+		<% end %>
+	</tbody>
+

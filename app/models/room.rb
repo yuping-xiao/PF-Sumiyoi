@@ -1,7 +1,10 @@
 class Room < ApplicationRecord
 
+	has_many :room_comments, dependent: :destroy
 	has_many :room_images, dependent: :destroy
 	accepts_attachments_for :room_images, attachment: :image
+
+	belongs_to :user
 
 	enum living_status:{
 		_1年未満: 0,
