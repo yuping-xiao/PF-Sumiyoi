@@ -1,5 +1,7 @@
 <header class="navbar navbar-fixed-top navbar-default">
 
+  <%= image_tag 'Sumiyoi_logo.png', size: '750x50' %>
+
     <% if user_signed_in? %>
       <div class="flexcontainer">
         <div class="flexitem item1"><%= link_to "Home", user_path(current_user) %></div>
