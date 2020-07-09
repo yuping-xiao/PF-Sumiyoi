@@ -8,4 +8,5 @@ class User < ApplicationRecord
 
   has_many :rooms, dependent: :destroy
   has_many :room_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 end
