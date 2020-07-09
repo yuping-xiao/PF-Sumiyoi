@@ -18,7 +18,9 @@
 		<tr>
 			<td><%= f.name %></td>
 			<% if f.room_images.present? %>
-			<td><%= attachment_image_tag f.room_images, :image, :fill, 200, 200 %></td>
+			<td>
+				<%= attachment_image_tag f.room_images[0], :image, :fill, 200, 200 %>
+			</td>
 			<% else %>
 			<td><%= image_tag 'no_image.jpg', size: '200x200' %></td>
 			<% end %>
