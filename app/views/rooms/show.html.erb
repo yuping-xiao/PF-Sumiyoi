@@ -71,7 +71,7 @@
 </br>
 
 <%= form_for [@room, @room_comment] do |f| %>
-	<%= f.text_area :comment, rows:'5', class: "form-control", placeholder: "コメントを書き込む" %>
+	<%= f.text_area :comment, cols: '50', rows:'5', class: "form-control", placeholder: "コメントを書き込む" %>
 	<%= f.submit "送信する", class: "btn" %>
 <% end %>
 
