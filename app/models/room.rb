@@ -9,6 +9,10 @@ class Room < ApplicationRecord
 		favorites.where(user_id: user.id).exists?
 	end
 
+	def Room.search(search)
+		Room.where(['name LIKE ?', "%#{search}%"])
+	end
+
 	belongs_to :user
 
 	enum living_status:{

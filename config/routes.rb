@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   root 'home#top'
   get 'home/about'
+  get "search" => "rooms#search"
 
   resources :rooms, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
   	resource :favorites, only: [:create, :destroy]

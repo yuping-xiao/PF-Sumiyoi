@@ -36,6 +36,10 @@ class RoomsController < ApplicationController
   def destroy
   end
 
+  def search
+    @rooms = Room.search(params[:search])
+  end
+
   private
   def room_params
   	params.require(:room).permit(:name, :address, :condition, :link, :living_status, room_images_images: [])
