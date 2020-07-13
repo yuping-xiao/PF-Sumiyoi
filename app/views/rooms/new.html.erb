@@ -1,41 +1,47 @@
-<h1>物件新規投稿</h1>
-<!-- <p>Find me in app/views/rooms/new.html.erb</p> -->
+<div class="background3">
 
-<%= form_for(@room) do |f| %>
+	<h1>物件新規投稿</h1>
+	<!-- <p>Find me in app/views/rooms/new.html.erb</p> -->
 
-<div class="field row">
-	<%= f.label :物件名 %>
-	<%= f.text_field :name %>
+	<%= form_for(@room) do |f| %>
+
+	<div class="field">
+		<%= f.label :物件名 %>
+		<%= f.text_field :name %>
+	</div>
+
+	<div class="field">
+		<%= f.label :物件イメージ画像 %>
+		<%= f.attachment_field :room_images_images, multiple: true %>
+	</div>
+
+	<div class="field">
+		<%= f.label :住所 %>
+		<%= f.text_field :address %>
+	</div>
+
+	<div class="field">
+		<%= f.label :状態 %>
+		<%= f.text_area :condition %>
+	</div>
+
+	<div class="field">
+		<%= f.label :参考元URL %>
+		<%= f.text_field :link %>
+	</div>
+
+	<div class="field">
+		<%= f.label :居住年数 %>
+		<%= f.select :living_status, options_for_select(Room.living_statuses.keys, Room.living_statuses), :prompt => "選択してください" %>
+	</div>
+
+	<div class="field">
+		<%= f.submit "新規登録" %>
+	</div>
+
+	<% end %>
+
+	<br>
+	<br>
+
 </div>
-
-<div class="field">
-	<%= f.label :物件イメージ画像 %>
-	<%= f.attachment_field :room_images_images, multiple: true %>
-</div>
-
-<div class="field row">
-	<%= f.label :住所 %>
-	<%= f.text_field :address %>
-</div>
-
-<div class="field row">
-	<%= f.label :状態 %>
-	<%= f.text_area :condition %>
-</div>
-
-<div class="field row">
-	<%= f.label :参考元URL %>
-	<%= f.text_field :link %>
-</div>
-
-<div>
-	<%= f.label :居住年数 %>
-	<%= f.select :living_status, options_for_select(Room.living_statuses.keys, Room.living_statuses), :prompt => "選択してください" %>
-</div>
-
-<div>
-	<%= f.submit "新規登録" %>
-</div>
-
-<% end %>
-

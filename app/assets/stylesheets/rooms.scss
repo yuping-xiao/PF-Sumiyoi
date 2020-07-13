@@ -2,6 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.background2{
+	background-image: url(rooms.jpg);
+}
+
+.background3{
+	background-image: url(post.jpg);
+	background-size: 450px;
+}
+
 li {
 	display: inline;
+}
+
+.table{
+	width: 100%;
+}
+
+.field{
+	padding-left: 550px;
+	margin: 15px;
 }

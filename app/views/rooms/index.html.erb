@@ -1,34 +1,40 @@
-<h1>物件一覧</h1>
-<!-- <p>Find me in app/views/rooms/index.html.erb</p>
- -->
-<table class="table">
-	<thead>
-		<tr>
-			<th>物件名</th>
-			<th></th>
-			<th>住所</th>
-			<th>居住年数</th>
-		</tr>
-	</thead>
+<div class="background2">
+	
+	<h1>物件一覧</h1>
+	<!-- <p>Find me in app/views/rooms/index.html.erb</p> -->
 
-	<tbody>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>物件名</th>
+				<th></th>
+				<th>住所</th>
+				<th>居住年数</th>
+			</tr>
+		</thead>
 
-	<% @rooms.each do |f| %>
+		<tbody>
 
-		<tr>
-			<td><%= f.name %></td>
-			<% if f.room_images.present? %>
-			<td>
-				<%= attachment_image_tag f.room_images[0], :image, :fill, 200, 150 %>
-			</td>
-			<% else %>
-			<td><%= image_tag 'no_image.jpg', size: '200x150' %></td>
-			<% end %>
-			<td><%= f.address %></td>
-			<td><%= f.living_status %></td>
-		</tr>
+		<% @rooms.each do |f| %>
 
-	<% end %>
+			<tr>
+				<td>
+					<%= link_to room_path(f.id) do %>
+					<%= f.name %>
+					<% end %>
+				</td>
+				<td>
+					<%= link_to room_path(f.id) do %>
+					<%= attachment_image_tag f.room_images[0], :image, :fill, 200, 150, fallback: "no_image.jpg", size: '200x150' %>
+					<% end %>
+				</td>
+				<td><%= f.address %></td>
+				<td><%= f.living_status %></td>
+			</tr>
 
-	</tbody>
+		<% end %>
 
+		</tbody>
+	</table>
+
+</div>
