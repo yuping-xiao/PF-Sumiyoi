@@ -29,12 +29,27 @@ class RoomsController < ApplicationController
   end
 
   def edit
+    @room = Room.find(params[:id])
+    if @room.user.id != current_user.id
+      redirect_to rooms_path
+    end
   end
 
   def update
+    @room = Room.find(params[:id])
+    if @room.update(room_params)
+      flash[:notice] = "物件が正常に更新されました！"
+      redirect_to room_path(@room.id)
+    else
+      render 'edit'
+    end
   end
 
   def destroy
+    @room = Room.find(params[:id])
+    @room.destroy
+    flash[:notice] = "物件が正常に削除できました！"
+    redirect_to user_path(current_user)
   end
 
   def search
