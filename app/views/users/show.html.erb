@@ -1,24 +1,49 @@
-<h1>ユーザ詳細</h1>
-<!-- <p>Find me in app/views/users/show.html.erb</p> -->
+<div class="background">
+	
+	<h1>ユーザ詳細</h1>
 
-<table class="table">
-	<thead>
-		<tr>
-			<th>ユーザ名</th>
-			<th>イメージ画像</th>
-			<th>紹介文</th>
-		</tr>
-	</thead>
+	<!-- <p>Find me in app/views/users/show.html.erb</p> -->
 
-	<tbody>
+	<div class="flexcontainer">
 
-		<tr>
-			<td><%= @user.name %></td>
-			<td><%= attachment_image_tag @user, :profile_image, :fill, 200, 200 %></td>
-			<td><%= @user.introduction %></td>
-		</tr>
+		<!-- flexboxでレイアウト調整のため追加↓ -->
+		<table class="flexitem">
+		</table>
+		<!-- レイアウト調整ここまで -->
 
-	</tbody>
-</table>
+		<table class="flexitem">
+			<thead>
+				<tr>
+					<th>ユーザ名:</th>
+					<td><%= @user.name %></td>
+				</tr>
+				<tr>
+					<th>ユーザイメージ:</th>
+					<th><%= attachment_image_tag @user, :profile_image, :fill, 200, 200, fallback: "no_image.jpg", size: "200x200" %></th>
+				</tr>
+				<tr>
+					<th>紹介文:</th>
+					<td><%= @user.introduction %></td>
+				</tr>
+			</thead>
+		</table>
 
-<%= link_to "ユーザ情報編集", edit_user_path %>
+		<!-- flexboxでレイアウト調整のため追加↓ -->
+		<table class="flexitem">
+		</table>
+		<!-- レイアウト調整ここまで -->
+
+	</div>
+
+	<br>
+
+	<div class="flexcontainer">
+		<div class="flexitem">
+		</div>
+
+		<div class="flexitem">
+			<%= link_to "ユーザ情報編集", edit_user_path, class: 'btn btn-default' %>
+		</div>
+	</div>
+
+</div>
