@@ -47,4 +47,42 @@
 		</div>
 	</div>
 
+	<h1>投稿物件一覧</h1>
+	<!-- <p>Find me in app/views/rooms/index.html.erb</p> -->
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>物件名</th>
+				<th></th>
+				<th>住所</th>
+				<th>居住年数</th>
+			</tr>
+		</thead>
+
+		<tbody>
+
+		<% @user.rooms.each do |f| %>
+
+			<tr>
+				<td>
+					<%= link_to room_path(f.id) do %>
+					<%= f.name %>
+					<% end %>
+				</td>
+				<td>
+					<%= link_to room_path(f.id) do %>
+					<%= attachment_image_tag f.room_images[0], :image, :fill, 200, 150, fallback: "no_image.jpg", size: '200x150' %>
+					<% end %>
+				</td>
+				<td><%= f.address %></td>
+				<td><%= f.living_status %></td>
+			</tr>
+
+		<% end %>
+
+		</tbody>
+	</table>
+
+
 </div>

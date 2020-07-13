@@ -1,111 +1,142 @@
-<h1>物件詳細</h1>
-<!-- <p>Find me in app/views/rooms/show.html.erb</p> -->
+<div class="background">
+	<h1>物件詳細</h1>
+	<!-- <p>Find me in app/views/rooms/show.html.erb</p> -->
+	<table class="table">
+		<thead>
+			<tr>
+				<th>物件名</th>
+				<td><%= @room.name %></td>
+			</tr>
+			<tr>
+				<th>物件イメージ画像</th>
+				<% if @room.room_images.present? %>
+					<td><% @room.room_images.each do |image| %>
+					<%= attachment_image_tag image, :image, :fill, 200, 150 %></td>
+					<% end %>
 
-<table border="2" style="border-collapse: collapse; border-color: green">
-	<thead>
-		<tr>
-			<td>ユーザ名</td>
-			<td>物件名</td>
-			<td>物件イメージ画像</td>
-			<td>住所</td>
-			<td>状態</td>
-			<td>参照url</td>
-			<td>居住年数</td>
-			<td>記事作成日</td>
-			<td>記事更新日</td>
-		</tr>
-	</thead>
-
-	<tbody>
-		<tr>
-			<td>ユーザを表示する</td>
-			<td><%= @room.name %></td>
-
-			<% if @room.room_images.present? %>
-				<td><% @room.room_images.each do |image| %>
-				<%= attachment_image_tag image, :image, :fill, 200, 150 %></td>
+				<% else %>
+					<td><%= image_tag 'no_image.jpg', size: '200x150' %></td>
 				<% end %>
 
-			<% else %>
-				<td><%= image_tag 'no_image.jpg', size: '200x150' %></td>
-			<% end %>
-			
-			<td><%= @room.address %></td>
-			<td><%= @room.condition %></td>
-			<td><%= @room.link %></td>
-			<td><%= @room.living_status %></td>
-			<td><%= @room.created_at.strftime('%Y/%m/%d') %></td>
-			<td><%= @room.updated_at.strftime('%Y/%m/%d') %></td>
-		</tr>
-	</tbody>
-</table>
+			</tr>
+		</thead>
+	</table>
 
-<li>
-	<%= @room.favorites.count %>件のいいね
-</li>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>住所</th>
+				<td><%= @room.address %></td>
+			</tr>
+			<tr>
+				<td>状態</td>
+				<td><%= @room.condition %></td>
+			</tr>
+		</thead>
+	</table>
 
-<li>
-	/ <%= @room.room_comments.count %>件のコメント
-</li>
 
-<div>
-	----------------------------------------------
-</div>
+	<table border="2" style="border-collapse: collapse; border-color: green">
+		<thead>
+			<tr>
+				<td>ユーザ名</td>
+				<td>参照url</td>
+				<td>居住年数</td>
+				<td>記事作成日</td>
+				<td>記事更新日</td>
+				<td></td>
+			</tr>
+		</thead>
 
-<% if @room.favorited_by?(current_user) %>
-<div>
-	いいね済み
-	<%= link_to room_favorites_path(@room), method: :delete do %>
-	いいねを取り消す
+		<tbody>
+			<tr>
+				<td>
+					<%= link_to user_path do %>
+						<%= @room.user.name %>
+					<% end %>
+					</td>
+				<td><%= @room.link %></td>
+				<td><%= @room.living_status %></td>
+				<td><%= @room.created_at.strftime('%Y/%m/%d') %></td>
+				<td><%= @room.updated_at.strftime('%Y/%m/%d') %></td>
+				<% if @room.user == current_user %>
+						<td>
+							<button type="btn"><%= link_to "物件情報削除", room_path(@room.id), method: :delete %></button>
+						</td>
+					<% end %>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<li>
+		<%= @room.favorites.count %>件のいいね
+	</li>
+
+	<li>
+		/ <%= @room.room_comments.count %>件のコメント
+	</li>
+
+	<div>
+		----------------------------------------------
+	</div>
+
+	<% if @room.favorited_by?(current_user) %>
+	<div>
+		いいね済み
+		<button type="btn">
+			<%= link_to "いいねを取り消す", room_favorites_path(@room), method: :delete %>
+		</button>
+	</div>
+	<% else %>
+	<div>
+		未いいね
+		<button type="btn">
+			<%= link_to "いいねする", room_favorites_path(@room), method: :post %>
+		</button>
+	</div>
 	<% end %>
-</div>
-<% else %>
-<div>
-	未いいね
-	<%= link_to room_favorites_path(@room), method: :post do %>
-	いいねする
-	<% end %>
-</div>
-<% end %>
 
-</br>
+	<br>
+	</br>
 
-<%= form_for [@room, @room_comment] do |f| %>
-	<%= f.text_area :comment, cols: '50', rows:'5', class: "form-control", placeholder: "コメントを書き込む" %>
-	<%= f.submit "送信する", class: "btn" %>
-<% end %>
-
-</br>
-
-<% if @room.room_comments.count == 0 %>
-
-<% else %>
-
-<table border="1" style="border-collapse: collapse;">
-	<thead>
-		<tr>
-			<td>ユーザ名</td>
-			<td></td>
-			<td>日付</td>
-			<td>コメント</td>
-			<td></td>
-		</tr>
-	</thead>
-
-	<tbody>
-		<% @room.room_comments.each do |room_comment| %>
-		<tr>
-			<td><%= room_comment.user.name %></td>
-			<td><%= attachment_image_tag room_comment.user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg", size: '65x65' %></td>
-			<td><%= room_comment.created_at.strftime('%Y/%m/%d') %></td>
-			<td><%= room_comment.comment %></td>
-
-			<% if room_comment.user == current_user %>
-				<td><%= link_to "コメント削除", room_room_comment_path(room_comment.room, @room), method: :delete, class: "btn" %></td>
-			<% end %>
-		</tr>
+		<%= form_for [@room, @room_comment] do |f| %>
+			<%= f.text_area :comment, cols: '50', rows:'5', class: "form-control", placeholder: "コメントを書き込む" %>
+			<%= f.submit "送信する", class: "btn" %>
 		<% end %>
-	</tbody>
-</table>
 
-<% end %>
+		</br>
+
+		<% if @room.room_comments.count == 0 %>
+
+		<% else %>
+
+		<table border="1" class="center" style="border-collapse: collapse;">
+			<thead>
+				<tr>
+					<td>ユーザ名</td>
+					<td></td>
+					<td>日付</td>
+					<td>コメント</td>
+					<td></td>
+				</tr>
+			</thead>
+
+			<tbody>
+				<% @room.room_comments.each do |room_comment| %>
+				<tr>
+					<td><%= room_comment.user.name %></td>
+					<td><%= attachment_image_tag room_comment.user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg", size: '65x65' %></td>
+					<td><%= room_comment.created_at.strftime('%Y/%m/%d') %></td>
+					<td><%= room_comment.comment %></td>
+
+					<% if room_comment.user == current_user %>
+						<td><%= link_to "コメント削除", room_room_comment_path(room_comment.room, @room), method: :delete, class: "btn" %></td>
+					<% end %>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+
+		<% end %>
+</div>
