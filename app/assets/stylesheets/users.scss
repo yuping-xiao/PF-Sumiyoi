@@ -6,6 +6,16 @@
  background-image: url(my_info.png);
  }
 
+ .background4{
+ background-image: url(registration.png);
+ background-position: center;
+ }
+
+ .background5{
+ background-image: url(session.jpg);
+ background-position: center;
+ }
+
  .flexcontainer{
  	display: flex;
  }
@@ -42,3 +52,4 @@ h1{
     text-align: center;
     background-color: hsla(0, 0%, 100%, .65)
 }
+
