@@ -10,9 +10,11 @@
 			<tr>
 				<th>物件イメージ画像</th>
 				<% if @room.room_images.present? %>
-					<td><% @room.room_images.each do |image| %>
-					<%= attachment_image_tag image, :image, :fill, 200, 150 %></td>
-					<% end %>
+					<td>
+						<% @room.room_images.each do |image| %>
+							<%= attachment_image_tag image, :image, :fill, 200, 150 %>
+						<% end %>
+					</td>
 
 				<% else %>
 					<td><%= image_tag 'no_image.jpg', size: '200x150' %></td>
@@ -54,7 +56,7 @@
 					<%= link_to user_path do %>
 						<%= @room.user.name %>
 					<% end %>
-					</td>
+				</td>
 				<td><%= @room.link %></td>
 				<td><%= @room.living_status %></td>
 				<td><%= @room.created_at.strftime('%Y/%m/%d') %></td>
@@ -63,7 +65,7 @@
 						<td>
 							<button type="btn"><%= link_to "物件情報削除", room_path(@room.id), method: :delete %></button>
 						</td>
-					<% end %>
+				<% end %>
 			</tr>
 		</tbody>
 	</table>
@@ -82,19 +84,20 @@
 	</div>
 
 	<% if @room.favorited_by?(current_user) %>
-	<div>
-		いいね済み
-		<button type="btn">
-			<%= link_to "いいねを取り消す", room_favorites_path(@room), method: :delete %>
-		</button>
-	</div>
+		<div>
+			いいね済み
+			<button type="btn">
+				<%= link_to "いいねを取り消す", room_favorites_path(@room), method: :delete %>
+			</button>
+		</div>
+
 	<% else %>
-	<div>
-		未いいね
-		<button type="btn">
-			<%= link_to "いいねする", room_favorites_path(@room), method: :post %>
-		</button>
-	</div>
+		<div>
+			未いいね
+			<button type="btn">
+				<%= link_to "いいねする", room_favorites_path(@room), method: :post %>
+			</button>
+		</div>
 	<% end %>
 
 	<br>
@@ -107,9 +110,9 @@
 
 		</br>
 
-		<% if @room.room_comments.count == 0 %>
+	<% if @room.room_comments.count == 0 %>
 
-		<% else %>
+	<% else %>
 
 		<table border="1" class="center" style="border-collapse: collapse;">
 			<thead>
@@ -138,5 +141,5 @@
 			</tbody>
 		</table>
 
-		<% end %>
+	<% end %>
 </div>

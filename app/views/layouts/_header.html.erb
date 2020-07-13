@@ -2,19 +2,20 @@
 
   <%= image_tag 'Sumiyoi_logo.png', size: '750x50' %>
 
-    <div class="flexcontainer">
-      <div class="flexitem item5">
-        物件の名前で検索できます>>>
-      </div>
-      <div class="flexitem item-right">
-        <%= form_tag(search_path, :method => 'get') do %>
-        <%= text_field_tag :search %>
-        <%= submit_tag '物件検索', :name => nil %>
-        <% end %>
-      </div>
-    </div>
-
     <% if user_signed_in? %>
+
+      <div class="flexcontainer">
+        <div class="flexitem item5">
+          物件の名前で検索できます>>>
+        </div>
+        <div class="flexitem item-right">
+          <%= form_tag(search_path, :method => 'get') do %>
+          <%= text_field_tag :search %>
+          <%= submit_tag '物件検索', :name => nil %>
+          <% end %>
+        </div>
+      </div>
+      
       <div class="flexcontainer">
         <div class="flexitem item1"><%= link_to "My info", user_path(current_user) %></div>
         <div class="flexitem item2"><%= link_to "Rooms", rooms_path %></div>
