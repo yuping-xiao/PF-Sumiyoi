@@ -14,7 +14,7 @@ class Room < ApplicationRecord
 	end
 
 	def Room.search(search)
-		Room.where(['name LIKE ?', "%#{search}%"])
+		Room.where(['address LIKE ?', "%#{search}%"])
 	end
 
 	belongs_to :user
