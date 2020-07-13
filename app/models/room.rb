@@ -1,5 +1,9 @@
 class Room < ApplicationRecord
 
+	validates :name, presence: true, length: {maximum: 100}
+	validates :address, presence: true, length: {minimum: 3, maximum: 200}
+	validates :condition, length: { maximum: 1000 }
+
 	has_many :room_comments, dependent: :destroy
 	has_many :room_images, dependent: :destroy
 	accepts_attachments_for :room_images, attachment: :image
