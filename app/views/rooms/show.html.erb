@@ -47,6 +47,7 @@
 				<td>記事作成日</td>
 				<td>記事更新日</td>
 				<td></td>
+				<td></td>
 			</tr>
 		</thead>
 
@@ -61,10 +62,14 @@
 				<td><%= @room.living_status %></td>
 				<td><%= @room.created_at.strftime('%Y/%m/%d') %></td>
 				<td><%= @room.updated_at.strftime('%Y/%m/%d') %></td>
+
 				<% if @room.user == current_user %>
-						<td>
-							<button type="btn"><%= link_to "物件情報削除", room_path(@room.id), method: :delete %></button>
-						</td>
+					<td>
+						<button type="btn"><%= link_to "物件情報編集", edit_room_path(@room.id) %></button>
+					</td>
+					<td>
+						<button type="btn"><%= link_to "物件情報削除", room_path(@room.id), method: :delete %></button>
+					</td>
 				<% end %>
 			</tr>
 		</tbody>
