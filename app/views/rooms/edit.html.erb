@@ -1,0 +1,45 @@
+<div class="background">
+
+	<h1>物件編集</h1>
+	<%= form_for(@room) do |f| %>
+
+		<div class="field">
+			<%= f.label :物件名 %>
+			<%= f.text_field :name %>
+		</div>
+
+		<div class="field">
+			<%= f.label :物件イメージ画像 %>
+			<%= f.attachment_field :room_images_images, multiple: true %>
+		</div>
+
+		<div class="field">
+			<%= f.label :住所 %>
+			<%= f.text_area :address %>
+		</div>
+
+		<div class="field">
+			<%= f.label :状態 %>
+			<%= f.text_area :condition %>
+		</div>
+
+		<div class="field">
+			<%= f.label :参考元URL %>
+			<%= f.text_field :link %>
+		</div>
+
+		<div class="field">
+			<%= f.label :居住年数 %>
+			<%= f.select :living_status, options_for_select(Room.living_statuses.keys, Room.living_statuses), :prompt => "選択してください" %>
+		</div>
+
+		<div class="field">
+			<%= f.submit "変更を保存" %>
+		</div>
+
+	<% end %>
+
+	<br>
+	<br>
+	
+</div>

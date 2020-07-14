@@ -1,0 +1,38 @@
+<header class="navbar navbar-fixed-top navbar-default">
+
+  <%= image_tag 'Sumiyoi_logo.png', size: '750x50' %>
+
+    <% if user_signed_in? %>
+
+      <div class="flexcontainer">
+        <div class="flexitem item5">
+          住所で検索できます>>>
+        </div>
+        <div class="flexitem item-right">
+          <%= form_tag(search_path, :method => 'get') do %>
+          <%= text_field_tag :search %>
+          <%= submit_tag '住所検索', :name => nil %>
+          <% end %>
+        </div>
+      </div>
+      
+      <div class="flexcontainer">
+        <div class="flexitem item1"><%= link_to "My info", user_path(current_user) %></div>
+        <div class="flexitem item2"><%= link_to "Rooms", rooms_path %></div>
+        <div class="flexitem item3"><%= link_to "Post", new_room_path %></div>
+        <div class="flexitem item4"><%= link_to "Sign_out", destroy_user_session_path, method: :delete %></div>
+      </div>
+
+    <% else %>
+      <div class="flexcontainer">
+        <div class="flexitem item1"><%= link_to "Home", root_path %></div>
+        <div class="flexitem item2"><%= link_to "About", home_about_path %></div>
+        <div class="flexitem item3"><%= link_to "Sign_in", new_user_session_path %></div>
+        <div class="flexitem item4"><%= link_to "Sign_up", new_user_registration_path %>
+        </div>
+      </div>
+
+    <% end %>
+
+</header>
+

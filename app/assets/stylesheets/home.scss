@@ -1,0 +1,21 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.flex {
+	display: flex;
+	background-color: #00c7ce;
+}
+.flex > div {
+	width: 33%;
+	height: 100px;
+	margin: 10px;
+	background-color: #fff;
+}
+button{
+	width: 100px;
+}
+
+.center{
+	text-align: center;
+}
