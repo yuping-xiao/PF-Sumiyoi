@@ -139,7 +139,7 @@
 					<td><%= room_comment.comment %></td>
 
 					<% if room_comment.user == current_user %>
-						<td><%= link_to "コメント削除", room_room_comment_path(room_comment.room, @room), method: :delete, class: "btn" %></td>
+						<td><%= link_to "コメント削除", room_room_comment_path(room_comment.room.id, room_comment.id), method: :delete, class: "btn" %></td>
 					<% end %>
 				</tr>
 				<% end %>

@@ -9,8 +9,8 @@ class RoomCommentsController < ApplicationController
 	end
 
 	def destroy
-		RoomComment.find_by(id: params[:id], room_id: params[:room_id]).destroy
-		redirect_to room_path(params[:room_id])
+		RoomComment.find_by(id: params[:id],room_id: params[:room_id]).destroy
+		redirect_back(fallback_location: root_path)
 	end
 
 	private

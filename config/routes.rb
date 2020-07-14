@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   get "search" => "rooms#search"
 
   resources :rooms, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+    resources :room_comments, only: [:create, :destroy]
   	resource :favorites, only: [:create, :destroy]
-  	resources :room_comments, only: [:create, :destroy]
   end
   
   resources :users, only: [:show, :edit, :update]
