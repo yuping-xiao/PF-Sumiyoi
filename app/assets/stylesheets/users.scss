@@ -3,16 +3,16 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
  .background{
- background-image: url(my_info.png);
+ background-image: image-url(my_info.png);
  }
 
  .background4{
- background-image: url(registration.png);
+ background-image: image-url(registration.png);
  background-position: center;
  }
 
  .background5{
- background-image: url(session.jpg);
+ background-image: image-url(session.jpg);
  background-position: center;
  }
 
