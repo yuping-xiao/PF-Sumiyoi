@@ -66,6 +66,9 @@ gem "devise"
 gem "refile", require: "refile/rails", github: 'refile/refile'
 gem "refile-mini_magick", github: 'refile/refile-mini_magick'
 
+gem 'rubocop'
+gem 'rubocop-rails'
+
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
