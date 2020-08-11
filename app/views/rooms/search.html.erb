@@ -12,8 +12,10 @@
 			</tr>
 		</thead>
 
-		<% @rooms.each do |room| %>
 			<tbody>
+
+				<% @rooms.each do |room| %>
+
 				<tr>
 					<td>
 						<%= link_to room_path(room.id) do %>
@@ -28,10 +30,10 @@
 					<td><%= room.address %></td>
 					<td><%= room.living_status %></td>
 				</tr>
+
+				<% end %>
+
 			</tbody>
-
-		<% end %>
-
 	</table>
 	
 </div>
